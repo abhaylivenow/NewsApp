@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <View
+        android:id="@+id/line"
+        android:layout_width="match_parent"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
+        android:layout_height="3dp"
+        android:layout_marginTop="10dp"
+        android:alpha="0.2"
+        android:background="#000000"/>
+
+    <androidx.cardview.widget.CardView
+        android:layout_below="@+id/line"
+        android:layout_marginTop="20dp"
+        android:id="@+id/card"
+        android:layout_width="match_parent"
+        android:layout_height="190dp"
+        android:layout_marginStart="26dp"
+        app:cardCornerRadius="20dp"
+        android:layout_marginEnd="26dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="fitXY"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/text_heading"
+        android:layout_below="@id/card"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Some random heading of the news"
+        android:textStyle="bold"
+        android:textSize="22sp"
+        android:textColor="#000000"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
+
+    <TextView
+        android:id="@+id/text_short_description"
+        android:layout_below="@id/text_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Some random heading of the news Some random heading of the news Some random heading of the news Some random heading of the news"
+        android:maxLines="3"
+        android:ellipsize="end"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"/>
+
+    <TextView
+        android:id="@+id/text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22-01-22"
+        android:layout_below="@id/text_short_description"
+        android:textSize="18sp"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_date">
+
+        <Button
+            android:id="@+id/btn_read"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Read"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="100dp" />
+
+        <Button
+            android:id="@+id/btn_save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/btn_read"
+            app:layout_constraintBottom_toBottomOf="@id/btn_read"
+            android:layout_marginEnd="100dp"
+            android:layout_marginStart="100dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</RelativeLayout>
