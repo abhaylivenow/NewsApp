@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingTop="10dp"
+    android:paddingBottom="10dp"
+    android:paddingStart="10dp"
+    android:paddingEnd="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/card"
+        android:layout_width="120dp"
+        app:cardCornerRadius="20dp"
+        android:layout_height="120dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:src="@drawable/ic_launcher_background"
+            android:scaleType="fitXY"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:id="@+id/text_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="#portest"
+        android:layout_marginTop="14dp"
+        android:layout_marginStart="16dp"
+        android:layout_toEndOf="@id/card"/>
+
+    <TextView
+        android:id="@+id/text_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Some random heading here, Some random heading here"
+        android:textStyle="bold"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:maxLines="2"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="15dp"
+        android:layout_below="@id/text_category"
+        android:layout_toEndOf="@id/card"/>
+
+    <TextView
+        android:id="@+id/text_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="22-10-01"
+        android:layout_marginStart="16dp"
+        android:layout_below="@id/text_heading"
+        android:layout_toEndOf="@id/card"/>
+
+    <TextView
+        android:id="@+id/text_author"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="James Andrew"
+        android:layout_marginStart="6dp"
+        android:layout_below="@id/text_heading"
+        android:layout_toEndOf="@id/text_date"/>
+
+</RelativeLayout>
