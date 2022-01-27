@@ -1,5 +1,6 @@
 package com.example.newsapp.adapters
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.newsapp.R
 import com.example.newsapp.model.Article
+import com.example.newsapp.ui.ReadNewsActivity
 import kotlinx.android.synthetic.main.news_preview.view.*
 
 class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
@@ -50,6 +52,20 @@ class NewsAdapter : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
             text_date.text = article.publishedAt
             setOnClickListener {
                 onItemClickListener?.let { it(article) }
+            }
+            btn_read.setOnClickListener {
+                val dataIntent = Intent(
+                    context,
+                    ReadNewsActivity::class.java
+                )
+                dataIntent.putExtra("imageUrl",article.urlToImage)
+                dataIntent.putExtra("heading",article.title)
+                dataIntent.putExtra("description",article.description)
+                dataIntent.putExtra("content",article.content)
+                dataIntent.putExtra("time",article.publishedAt)
+                dataIntent.putExtra("author",article.author)
+
+                context.startActivity(dataIntent)
             }
         }
     }
