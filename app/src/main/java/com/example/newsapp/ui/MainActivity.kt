@@ -3,6 +3,7 @@ package com.example.newsapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
@@ -71,13 +72,15 @@ class MainActivity : AppCompatActivity() {
                 is Resource.Success -> {
                     hideProgressBar()
                     response.data?.let { newsResponse ->
-                        newsAdapter.differ.submitList(newsResponse.articles)
+                        newsAdapter.differ.submitList(newsResponse.articles.toList())
+                        val totalPages = newsResponse.totalResults / 20 + 2
+                        isLastPage = viewModel.breakingNewsPage == totalPages
                     }
                 }
                 is Resource.Error -> {
                     hideProgressBar()
                     response.message?.let { message ->
-                        Toast.makeText(applicationContext,"Error occurred!",Toast.LENGTH_SHORT).show()
+                        Log.i("Error",message)
                     }
                 }
                 is Resource.Loading -> {
@@ -111,10 +114,47 @@ class MainActivity : AppCompatActivity() {
 
     private fun hideProgressBar() {
         progressBar.visibility = View.INVISIBLE
+        isLoading = false
     }
 
     private fun showProgressBar() {
         progressBar.visibility = View.VISIBLE
+        isLoading = true
+    }
+
+    var isLoading = false
+    var isLastPage = false
+    var isScrolling = false
+
+    val scrollListener = object : RecyclerView.OnScrollListener() {
+        override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+            super.onScrolled(recyclerView, dx, dy)
+
+            val layoutManager = recyclerView.layoutManager as LinearLayoutManager
+            val firstVisibleItemPosition = layoutManager.findFirstVisibleItemPosition()
+            val visibleItemCount = layoutManager.childCount
+            val totalItemCount = layoutManager.itemCount
+
+            val isNotLoadingAndNotLastPage = !isLoading && !isLastPage
+            val isAtLastItem = firstVisibleItemPosition + visibleItemCount >= totalItemCount
+            val isNotAtBeginning = firstVisibleItemPosition >= 0
+            val isTotalMoreThanVisible = totalItemCount >= 20
+            val shouldPaginate = isNotLoadingAndNotLastPage && isAtLastItem && isNotAtBeginning &&
+                    isTotalMoreThanVisible && isScrolling
+            if(shouldPaginate) {
+                viewModel.getBreakingNews("us")
+                isScrolling = false
+            } else {
+                rvNews.setPadding(0, 0, 0, 0)
+            }
+        }
+
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
+            super.onScrollStateChanged(recyclerView, newState)
+            if(newState == AbsListView.OnScrollListener.SCROLL_STATE_TOUCH_SCROLL) {
+                isScrolling = true
+            }
+        }
     }
 
     private fun setupRecyclerView() {
@@ -122,6 +162,7 @@ class MainActivity : AppCompatActivity() {
         rvNews.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(applicationContext)
+            addOnScrollListener(this@MainActivity.scrollListener)
         }
     }
 }
