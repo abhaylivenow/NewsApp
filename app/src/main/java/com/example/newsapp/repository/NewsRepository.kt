@@ -8,4 +8,7 @@ class NewsRepository(
 ) {
     suspend fun getBreakingNews(countryCode: String, pageNumber: Int) =
         RetrofitBuilder.api.getNews(countryCode, pageNumber)
+
+    suspend fun searchNews(searchQuery: String, pageNumber: Int) =
+        RetrofitBuilder.api.searchNews(searchQuery, pageNumber)
 }
