@@ -12,18 +12,8 @@
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:src="@drawable/ic_back"
-        android:layout_marginTop="25dp"
+        android:layout_marginTop="30dp"
         android:layout_marginStart="25dp"
-        android:elevation="1dp"/>
-
-    <ImageView
-        android:id="@+id/icon_save"
-        android:layout_width="36dp"
-        android:layout_height="36dp"
-        android:src="@drawable/ic_bookmark"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="25dp"
         android:elevation="1dp"/>
 
     <ImageView
@@ -33,7 +23,22 @@
         android:scaleType="fitXY"
         android:src="@drawable/ic_launcher_background" />
 
+    <TextView
+        android:id="@+id/text_heading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Some random heading corresponding lorem sdsf alrcmml"
+        android:textSize="22sp"
+        android:fontFamily="@font/queens_bold"
+        android:lineHeight="18dp"
+        android:layout_marginStart="14dp"
+        android:layout_above="@id/card"
+        android:layout_marginBottom="10dp"
+        android:textColor="@color/white"
+        android:layout_marginEnd="14dp"/>
+
     <androidx.cardview.widget.CardView
+        android:id="@+id/card"
         android:layout_width="match_parent"
         android:layout_height="550dp"
         android:layout_alignParentBottom="true"
@@ -45,22 +50,13 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
-            <Button
-                android:id="@+id/btn_save"
-                android:layout_width="120dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="40dp"
-                android:text="Save" />
-
             <ImageView
                 android:id="@+id/image_author"
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="20dp"
-                android:src="@drawable/ic_launcher_background" />
+                android:src="@drawable/man" />
 
             <TextView
                 android:id="@+id/text_author_name"
@@ -69,6 +65,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="20dp"
                 android:layout_toRightOf="@id/image_author"
+                android:fontFamily="@font/queens_bold"
                 android:text="James Andrew"
                 android:textColor="@color/black"
                 android:textSize="16sp"
@@ -83,6 +80,7 @@
                 android:layout_toRightOf="@id/image_author"
                 android:text="Lorem corresponding"
                 android:textColor="@color/black"
+                android:alpha="0.6"
                 android:textSize="14sp" />
 
             <ScrollView
@@ -95,6 +93,8 @@
                     android:id="@+id/text_full_news"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:fontFamily="@font/queens"
+                    android:lineHeight="17dp"
                     android:paddingStart="20dp"
                     android:paddingEnd="20dp"
                     android:text="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."

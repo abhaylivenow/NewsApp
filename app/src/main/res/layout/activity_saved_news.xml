@@ -8,11 +8,12 @@
     tools:context=".ui.SavedNewsActivity">
 
     <ImageView
+        android:id="@+id/btn_saved_back"
         android:layout_width="30dp"
         android:layout_height="30dp"
-        android:src="@drawable/ic_back"
+        android:layout_marginStart="20dp"
         android:layout_marginTop="46dp"
-        android:layout_marginStart="20dp"/>
+        android:src="@drawable/ic_back" />
 
     <TextView
         android:id="@+id/text_newsbreeze"
@@ -70,8 +71,8 @@
 
         <androidx.cardview.widget.CardView
             android:layout_marginTop="10dp"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
+            android:layout_marginStart="30dp"
+            android:layout_marginEnd="30dp"
             android:layout_marginBottom="50dp"
             app:cardCornerRadius="30dp"
             android:layout_width="match_parent"

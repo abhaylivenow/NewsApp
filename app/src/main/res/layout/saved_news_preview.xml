@@ -43,9 +43,11 @@
         android:layout_marginEnd="15dp"
         android:layout_toEndOf="@id/card"
         android:maxLines="2"
+        android:fontFamily="@font/queens_bold"
+        android:lineHeight="15sp"
         android:text="Some random heading here, Some random heading here"
         android:textColor="#000000"
-        android:textSize="14sp"
+        android:textSize="16sp"
         android:textStyle="bold" />
 
     <TextView

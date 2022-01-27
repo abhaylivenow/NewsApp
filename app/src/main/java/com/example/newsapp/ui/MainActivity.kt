@@ -30,7 +30,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var edtSearch: EditText
     private lateinit var rvNews: RecyclerView
-    private lateinit var textNews: TextView
     private lateinit var ImageBtnSaved: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -44,7 +43,6 @@ class MainActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         rvNews = findViewById(R.id.rv_news)
         edtSearch = findViewById(R.id.search)
-        textNews = findViewById(R.id.text_newsbreeze)
         ImageBtnSaved = findViewById(R.id.image_button_saved)
 
         ImageBtnSaved.setOnClickListener {

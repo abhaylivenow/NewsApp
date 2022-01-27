@@ -1,6 +1,7 @@
 package com.example.newsapp.ui
 
 import android.os.Bundle
+import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -17,12 +18,14 @@ class SavedNewsActivity : AppCompatActivity() {
     lateinit var viewModel: NewsViewModel
     lateinit var savedNewsAdapter: SavedNewsAdapter
     private lateinit var rvSavedNews: RecyclerView
+    private lateinit var btnBack: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_saved_news)
 
         rvSavedNews = findViewById(R.id.rv_saved_news)
+        btnBack = findViewById(R.id.btn_saved_back)
 
         val newsRepository = NewsRepository(ArticleDatabase(this))
         val viewModelProviderFactory = NewsViewModelProvider(newsRepository)
@@ -31,6 +34,10 @@ class SavedNewsActivity : AppCompatActivity() {
         viewModel.getSavedNews().observe(this, { articles ->
             savedNewsAdapter.differ.submitList(articles)
         })
+
+        btnBack.setOnClickListener {
+            onBackPressed()
+        }
 
         setupRecyclerView()
     }

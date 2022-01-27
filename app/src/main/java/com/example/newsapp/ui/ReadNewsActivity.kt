@@ -6,8 +6,13 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
 import com.example.newsapp.R
+import com.example.newsapp.db.ArticleDatabase
+import com.example.newsapp.model.Article
+import com.example.newsapp.model.Source
+import com.example.newsapp.repository.NewsRepository
 import kotlinx.android.synthetic.main.news_preview.view.*
 
 class ReadNewsActivity : AppCompatActivity() {
@@ -16,15 +21,22 @@ class ReadNewsActivity : AppCompatActivity() {
     private lateinit var btnBack: ImageView
     private lateinit var textAuthorName: TextView
     private lateinit var textFullNews: TextView
+    private lateinit var textHeading: TextView
+    lateinit var viewModel: NewsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_read_news)
 
+        val newsRepository = NewsRepository(ArticleDatabase(this))
+        val viewModelProviderFactory = NewsViewModelProvider(newsRepository)
+        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
+
         imageThumbnail = findViewById(R.id.image_thumbnail)
         btnBack = findViewById(R.id.btn_back)
         textAuthorName = findViewById(R.id.text_author_name)
         textFullNews = findViewById(R.id.text_full_news)
+        textHeading = findViewById(R.id.text_heading)
 
         btnBack.setOnClickListener {
             onBackPressed()
@@ -43,10 +55,9 @@ class ReadNewsActivity : AppCompatActivity() {
         val time = intent.getStringExtra("time")
         val author = intent.getStringExtra("author")
 
-        Log.i("here",imageUrl + " " + heading + " " + description + " " + time + " " + author)
-
         Glide.with(this).load(imageUrl).into(imageThumbnail)
         textAuthorName.text = author
         textFullNews.text = content
+        textHeading.text = heading
     }
 }

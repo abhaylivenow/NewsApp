@@ -38,26 +38,32 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/card"
-        android:layout_marginStart="20dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="10dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginEnd="24dp"
+        android:lineHeight="16dp"
+        android:fontFamily="@font/queens_bold"
         android:text="Some random heading of the news"
         android:textColor="#000000"
-        android:textSize="22sp"
+        android:textSize="20sp"
         android:textStyle="bold" />
 
     <TextView
         android:id="@+id/text_short_description"
-        android:layout_below="@id/text_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Some random heading of the news Some random heading of the news Some random heading of the news Some random heading of the news"
-        android:maxLines="3"
-        android:ellipsize="end"
-        android:textSize="18sp"
-        android:textColor="#000000"
+        android:layout_below="@id/text_heading"
         android:layout_marginStart="20dp"
-        android:layout_marginEnd="20dp"/>
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="5dp"
+        android:alpha="0.8"
+        android:ellipsize="end"
+        android:fontFamily="@font/queens"
+        android:lineHeight="15dp"
+        android:maxLines="3"
+        android:text="Some random heading of the news Some random heading of the news Some random heading of the news Some random heading of the news"
+        android:textColor="#000000"
+        android:textSize="18sp" />
 
     <TextView
         android:id="@+id/text_date"
@@ -68,7 +74,7 @@
         android:textSize="18sp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="8dp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -77,24 +83,26 @@
 
         <Button
             android:id="@+id/btn_read"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="Read"
+            android:background="@drawable/btn_background"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:layout_marginTop="5dp"
-            android:layout_marginStart="100dp" />
+            android:layout_marginStart="55dp" />
 
         <Button
             android:id="@+id/btn_save"
-            android:layout_width="wrap_content"
+            android:layout_width="120dp"
             android:layout_height="wrap_content"
             android:text="Save"
+            android:background="@drawable/btn_background"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@id/btn_read"
             app:layout_constraintBottom_toBottomOf="@id/btn_read"
-            android:layout_marginEnd="100dp"
+            android:layout_marginEnd="55dp"
             android:layout_marginStart="100dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
