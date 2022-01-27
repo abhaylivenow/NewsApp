@@ -1,11 +1,14 @@
 package com.example.newsapp.ui
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.ProgressBar
+import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -20,6 +23,7 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.w3c.dom.Text
 
 class MainActivity : AppCompatActivity() {
 
@@ -28,6 +32,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var progressBar: ProgressBar
     private lateinit var edtSearch: EditText
     private lateinit var rvNews: RecyclerView
+    private lateinit var textNews: TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,6 +41,12 @@ class MainActivity : AppCompatActivity() {
         progressBar = findViewById(R.id.progressBar)
         rvNews = findViewById(R.id.rv_news)
         edtSearch = findViewById(R.id.search)
+        textNews = findViewById(R.id.text_newsbreeze)
+        textNews.setOnClickListener {
+            startActivity(
+                Intent(this,ReadNewsActivity::class.java)
+            )
+        }
         setupRecyclerView()
 
         val newsRepository = NewsRepository(ArticleDatabase(this))
