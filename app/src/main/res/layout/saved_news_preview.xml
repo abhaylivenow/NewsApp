@@ -10,12 +10,14 @@
 
     <androidx.cardview.widget.CardView
         android:id="@+id/card"
-        android:layout_width="120dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        android:layout_width="80dp"
         app:cardCornerRadius="20dp"
-        android:layout_height="120dp">
+        android:layout_height="80dp">
 
         <ImageView
-            android:id="@+id/image"
+            android:id="@+id/image_saved_thumbnail"
             android:src="@drawable/ic_launcher_background"
             android:scaleType="fitXY"
             android:layout_width="match_parent"
@@ -27,41 +29,33 @@
         android:id="@+id/text_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="#portest"
-        android:layout_marginTop="14dp"
         android:layout_marginStart="16dp"
-        android:layout_toEndOf="@id/card"/>
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@id/card"
+        android:text="#portest" />
 
     <TextView
-        android:id="@+id/text_heading"
+        android:id="@+id/text_saved_heading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Some random heading here, Some random heading here"
-        android:textStyle="bold"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:maxLines="2"
+        android:layout_below="@id/text_category"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="15dp"
-        android:layout_below="@id/text_category"
-        android:layout_toEndOf="@id/card"/>
+        android:layout_toEndOf="@id/card"
+        android:maxLines="2"
+        android:text="Some random heading here, Some random heading here"
+        android:textColor="#000000"
+        android:textSize="14sp"
+        android:textStyle="bold" />
 
     <TextView
-        android:id="@+id/text_date"
+        android:id="@+id/text_saved_date"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="22-10-01"
+        android:layout_below="@id/text_saved_heading"
         android:layout_marginStart="16dp"
-        android:layout_below="@id/text_heading"
-        android:layout_toEndOf="@id/card"/>
-
-    <TextView
-        android:id="@+id/text_author"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="James Andrew"
-        android:layout_marginStart="6dp"
-        android:layout_below="@id/text_heading"
-        android:layout_toEndOf="@id/text_date"/>
+        android:layout_marginTop="5dp"
+        android:layout_toEndOf="@id/card"
+        android:text="22-10-01" />
 
 </RelativeLayout>

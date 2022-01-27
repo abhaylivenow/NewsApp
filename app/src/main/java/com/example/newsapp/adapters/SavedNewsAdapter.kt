@@ -1,10 +1,10 @@
 package com.example.newsapp.adapters
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
@@ -16,10 +16,11 @@ import com.example.newsapp.ui.NewsViewModel
 import com.example.newsapp.ui.ReadNewsActivity
 import com.google.android.material.snackbar.Snackbar
 import kotlinx.android.synthetic.main.news_preview.view.*
+import kotlinx.android.synthetic.main.news_preview.view.text_date
+import kotlinx.android.synthetic.main.news_preview.view.text_heading
+import kotlinx.android.synthetic.main.saved_news_preview.view.*
 
-class NewsAdapter(
-    val viewModel: NewsViewModel
-) : RecyclerView.Adapter<NewsAdapter.ArticleViewHolder>() {
+class SavedNewsAdapter: RecyclerView.Adapter<SavedNewsAdapter.ArticleViewHolder>() {
 
     inner class ArticleViewHolder(itemView: View): RecyclerView.ViewHolder(itemView)
 
@@ -38,7 +39,7 @@ class NewsAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ArticleViewHolder {
         return ArticleViewHolder(
             LayoutInflater.from(parent.context).inflate(
-                R.layout.news_preview,
+                R.layout.saved_news_preview,
                 parent,
                 false
             )
@@ -51,33 +52,28 @@ class NewsAdapter(
 
     override fun onBindViewHolder(holder: ArticleViewHolder, position: Int) {
         val article = differ.currentList[position]
+        Log.i("here",article.publishedAt)
         holder.itemView.apply {
-            Glide.with(this).load(article.urlToImage).into(image_news)
-            text_heading.text = article.title
-            text_short_description.text = article.description
-            text_date.text = article.publishedAt
-            setOnClickListener {
-                onItemClickListener?.let { it(article) }
-            }
-            btn_read.setOnClickListener {
-                val dataIntent = Intent(
-                    context,
-                    ReadNewsActivity::class.java
-                )
-                dataIntent.putExtra("imageUrl",article.urlToImage)
-                dataIntent.putExtra("heading",article.title)
-                dataIntent.putExtra("description",article.description)
-                dataIntent.putExtra("content",article.content)
-                dataIntent.putExtra("time",article.publishedAt)
-                dataIntent.putExtra("author",article.author)
-
-                context.startActivity(dataIntent)
-            }
-
-            btn_save.setOnClickListener {
-                viewModel.saveArticle(article)
-                Toast.makeText(context,"Saved",Toast.LENGTH_SHORT).show()
-            }
+            Glide.with(this).load(article.urlToImage).into(image_saved_thumbnail)
+            text_saved_heading.text = article.title
+//            text_short_description.text = article.description
+            text_saved_date.text = article.publishedAt
+//            text_saved_author.text = article.author
+//            setOnClickListener {
+//                onItemClickListener?.let { it(article) }
+//                val dataIntent = Intent(
+//                    context,
+//                    ReadNewsActivity::class.java
+//                )
+//                dataIntent.putExtra("imageUrl",article.urlToImage)
+//                dataIntent.putExtra("heading",article.title)
+//                dataIntent.putExtra("description",article.description)
+//                dataIntent.putExtra("content",article.content)
+//                dataIntent.putExtra("time",article.publishedAt)
+//                dataIntent.putExtra("author",article.author)
+//
+//                context.startActivity(dataIntent)
+//            }
         }
     }
 

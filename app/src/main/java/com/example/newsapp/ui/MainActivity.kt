@@ -4,10 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
-import android.widget.ProgressBar
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.core.widget.addTextChangedListener
 import androidx.lifecycle.Observer
@@ -19,6 +16,7 @@ import com.example.newsapp.adapters.NewsAdapter
 import com.example.newsapp.db.ArticleDatabase
 import com.example.newsapp.repository.NewsRepository
 import com.example.newsapp.utils.Resource
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
@@ -33,25 +31,29 @@ class MainActivity : AppCompatActivity() {
     private lateinit var edtSearch: EditText
     private lateinit var rvNews: RecyclerView
     private lateinit var textNews: TextView
+    private lateinit var ImageBtnSaved: ImageView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val newsRepository = NewsRepository(ArticleDatabase(this))
+        val viewModelProviderFactory = NewsViewModelProvider(newsRepository)
+        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
+
         progressBar = findViewById(R.id.progressBar)
         rvNews = findViewById(R.id.rv_news)
         edtSearch = findViewById(R.id.search)
         textNews = findViewById(R.id.text_newsbreeze)
-        textNews.setOnClickListener {
+        ImageBtnSaved = findViewById(R.id.image_button_saved)
+
+        ImageBtnSaved.setOnClickListener {
             startActivity(
-                Intent(this,ReadNewsActivity::class.java)
+                Intent(this,SavedNewsActivity::class.java)
             )
         }
-        setupRecyclerView()
 
-        val newsRepository = NewsRepository(ArticleDatabase(this))
-        val viewModelProviderFactory = NewsViewModelProvider(newsRepository)
-        viewModel = ViewModelProvider(this, viewModelProviderFactory).get(NewsViewModel::class.java)
+        setupRecyclerView()
 
         var job: Job? = null
         edtSearch.addTextChangedListener {
@@ -105,6 +107,8 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         })
+
+
     }
 
     private fun hideProgressBar() {
@@ -116,7 +120,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupRecyclerView() {
-        newsAdapter = NewsAdapter()
+        newsAdapter = NewsAdapter(viewModel)
         rvNews.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(applicationContext)
