@@ -8,6 +8,25 @@
     tools:context=".ui.ReadNewsActivity">
 
     <ImageView
+        android:id="@+id/btn_back"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_back"
+        android:layout_marginTop="25dp"
+        android:layout_marginStart="25dp"
+        android:elevation="1dp"/>
+
+    <ImageView
+        android:id="@+id/icon_save"
+        android:layout_width="36dp"
+        android:layout_height="36dp"
+        android:src="@drawable/ic_bookmark"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="25dp"
+        android:elevation="1dp"/>
+
+    <ImageView
         android:id="@+id/image_thumbnail"
         android:layout_width="match_parent"
         android:layout_height="350dp"
